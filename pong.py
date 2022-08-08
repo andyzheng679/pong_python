@@ -32,7 +32,42 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
+ball.xspeed = .1
+ball.yspeed = .1
+
+#moving the paddles
+def left_paddle_up():
+    y = left_paddle.ycor()
+    y += 20
+    left_paddle.sety(y)
+
+def left_paddle_down():
+    y = left_paddle.ycor()
+    y -= 20
+    left_paddle.sety(y)
+
+def right_paddle_up():
+    y = right_paddle.ycor()
+    y += 20
+    right_paddle.sety(y)
+
+def right_paddle_down():
+    y = right_paddle.ycor()
+    y -= 20
+    right_paddle.sety(y)
+
+#keyboard binding
+wn.listen()
+wn.onkeypress(left_paddle_up, "w")
+wn.onkeypress(left_paddle_down, "s")
+wn.onkeypress(right_paddle_up, "Up")
+wn.onkeypress(right_paddle_down, "Down")
 
 
 while True:
     wn.update()
+
+
+    #moving ball
+    ball.setx(ball.xcor() + ball.xspeed)
+    ball.sety(ball.ycor() + ball.yspeed)
