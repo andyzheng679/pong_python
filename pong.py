@@ -32,8 +32,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.xspeed = .1
-ball.yspeed = -.1
+ball.xspeed = .3
+ball.yspeed = -.3
 
 # moving the paddles
 def left_paddle_up():
@@ -90,4 +90,13 @@ while True:
 
     if ball.xcor() < -390:
         ball.goto(0, 0)
+        ball.xspeed *= -1
+
+    #
+    if (ball.xcor() > 340 and ball.xcor() < 350)  and (ball.ycor() < right_paddle.ycor() + 50 and ball.ycor() > right_paddle.ycor() -50):
+        ball.setx(340)
+        ball.xspeed *= -1
+
+    if (ball.xcor() < -340 and ball.xcor() > -350)  and (ball.ycor() < left_paddle.ycor() + 50 and ball.ycor() > left_paddle.ycor() -50):
+        ball.setx(-340)
         ball.xspeed *= -1
