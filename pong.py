@@ -35,6 +35,19 @@ ball.goto(0, 0)
 ball.xspeed = .3
 ball.yspeed = -.3
 
+# score
+left_score = 0
+right_score = 0
+
+# scoreboard
+scoreboard = turtle.Turtle()
+scoreboard.speed(0)
+scoreboard.color("white")
+scoreboard.penup()
+scoreboard.hideturtle()
+scoreboard.goto(0, 260)
+scoreboard.write("Player A: 0  Player B: 0", align="center", font=("Courier", 24, "normal"))
+
 # moving the paddles
 def left_paddle_up():
     y = left_paddle.ycor()
@@ -87,12 +100,18 @@ while True:
     if ball.xcor() > 390:
         ball.goto(0, 0)
         ball.xspeed *= -1
+        left_score += 1
+        scoreboard.clear()
+        scoreboard.write("Player A: {}  Player B: {}".format(left_score, right_score), align="center", font=("Courier", 24, "normal"))
 
     if ball.xcor() < -390:
         ball.goto(0, 0)
         ball.xspeed *= -1
+        right_score += 1
+        scoreboard.clear() 
+        scoreboard.write("Player A: {}  Player B: {}".format(left_score, right_score), align="center", font=("Courier", 24, "normal"))
 
-    #
+    # ball and paddle collisions
     if (ball.xcor() > 340 and ball.xcor() < 350)  and (ball.ycor() < right_paddle.ycor() + 50 and ball.ycor() > right_paddle.ycor() -50):
         ball.setx(340)
         ball.xspeed *= -1
